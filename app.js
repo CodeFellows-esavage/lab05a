@@ -132,10 +132,32 @@ Test this function by hand in the console to get it working, and when you think 
 let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
+    let arrayProduct;
+    let arrayString;
+    for(let i = 0; i < dynamicArray.length; i += 1){
+        if (dynamicArray.length > 1 && i === 0){
+            arrayProduct = dynamicArray[i];
+            arrayString = `The numbers ${dynamicArray[i]},`;
+            // console.log(arrayProduct);
+        } else if (dynamicArray.length > 1 && i === dynamicArray.length -1){
+            arrayProduct = multiply(arrayProduct, dynamicArray[i])[0];
+            arrayString = sum(arrayString, `${dynamicArray[i]}`)[0];
+        } else if (dynamicArray.length > 1 && i !== 0) {
+            arrayProduct = multiply(arrayProduct, dynamicArray[i])[0];
+            arrayString = sum(arrayString, `${dynamicArray[i]},`)[0];
+            // console.log(arrayProduct);
+        } else {
+            console.log(`Array must have 2 or more numbers!`);
+        }
+    }
 
+    return [arrayProduct, `${arrayString} have a product of ${arrayProduct}.`];
 }
 
+console.log(multiplyAnyArray(testDynamicArray));
+console.log(120, "The numbers 1,2,3,4,5 have a product of 120.")
+
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyAnyArray(testDynamicArray);
+testMultiplyAnyArray(testDynamicArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
