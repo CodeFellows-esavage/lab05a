@@ -132,30 +132,26 @@ Test this function by hand in the console to get it working, and when you think 
 let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
-    let arrayProduct;
-    let arrayString;
+    let arrayProduct = dynamicArray[0];
+    let arrayString = `The numbers ${dynamicArray[0]},`;
     for(let i = 0; i < dynamicArray.length; i += 1){
-        if (dynamicArray.length > 1 && i === 0){
-            arrayProduct = dynamicArray[i];
-            arrayString = `The numbers ${dynamicArray[i]},`;
-            // console.log(arrayProduct);
+        //make sure the array entered has more than two elements
+        if (dynamicArray.length === 1){
+            console.log(`Array must have 2 or more numbers!`);
+        // this else if condition is needed while building the string to remove the additional ,
         } else if (dynamicArray.length > 1 && i === dynamicArray.length -1){
             arrayProduct = multiply(arrayProduct, dynamicArray[i])[0];
             arrayString = sum(arrayString, `${dynamicArray[i]}`)[0];
+        // loops through and builds the product and the string with a comma    
         } else if (dynamicArray.length > 1 && i !== 0) {
             arrayProduct = multiply(arrayProduct, dynamicArray[i])[0];
             arrayString = sum(arrayString, `${dynamicArray[i]},`)[0];
-            // console.log(arrayProduct);
-        } else {
-            console.log(`Array must have 2 or more numbers!`);
         }
     }
-
     return [arrayProduct, `${arrayString} have a product of ${arrayProduct}.`];
 }
 
 console.log(multiplyAnyArray(testDynamicArray));
-console.log(120, "The numbers 1,2,3,4,5 have a product of 120.")
 
 // Here is the test for multiplyArray(); uncomment it to run it
 testMultiplyAnyArray(testDynamicArray);
